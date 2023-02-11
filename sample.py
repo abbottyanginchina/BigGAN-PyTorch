@@ -66,6 +66,7 @@ def run(config):
   # Load weights
   print('Loading weights...')
   # Here is where we deal with the ema--load ema weights or load normal weights
+  print("---config['use_ema']", config['use_ema'])
   utils.load_weights(G if not (config['use_ema']) else None, None, state_dict, 
                      config['weights_root'], experiment_name, config['load_weights'],
                      G if config['ema'] and config['use_ema'] else None,
@@ -176,6 +177,8 @@ def main():
   parser = utils.prepare_parser()
   parser = utils.add_sample_parser(parser)
   config = vars(parser.parse_args())
+
+  
   print(config)
   run(config)
   
